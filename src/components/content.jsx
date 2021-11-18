@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Row, Container, Form } from 'react-bootstrap';
+import { Card, Col, Row, Container, Form, Button } from 'react-bootstrap';
 import Loading from './loading';
 
 class Content extends React.Component {
@@ -44,21 +44,23 @@ class Content extends React.Component {
         this.fetching(this.state.key);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.key !== this.state.key)
-            this.fetching(this.state.key);
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.key !== this.state.key)
+    //         this.fetching(this.state.key);
+    // }
 
     render() {
-        const form = <div>
-            <Form style={{ margin: '20px 45px' }}>
+        const form = <div className='mx-5'>
+            <Form className="d-flex"  style={{ margin: '20px -45px' }}>
                 <Form.Control
                     onChange={e => this.setState({ key: e.target.value })}
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
                     value={this.state.key}
+                    className="me-2"
                 />
+                <Button onClick={() => this.fetching(this.state.key)}>Search</Button>
             </Form>
             <Loading isLoading={this.state.isLoading} />
         </div>
@@ -90,13 +92,14 @@ class Content extends React.Component {
         }
         if (this.state.totalResults === 0) {
             return (
-                <div>
+                <div className="mx-5">
                     {form}
                     <p>search not found</p>
+                    <Button onClick={() => {this.fetching(''); this.setState({key: ''})}}>back</Button>
                 </div>
             )
         } else {
-            return <div>
+            return <div className="mx-5">
                 {form}
                 <p>{this.state.err.message}</p>
             </div>
