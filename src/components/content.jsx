@@ -18,7 +18,7 @@ class Content extends React.Component {
     fetching(q) {
         this.setState({ isLoading: true })
 
-        fetch(`https://newsapi.org/v2/top-headlines?country=id&q=${q}&apiKey=348c1325c7654cca897aff2b31454cf2`)
+        fetch(`https://newsapi.org/v2/top-headlines?country=id&q=${q}&apiKey=97eded16c9be454d967dcce41964dcb8`)
             .then(res => {
                 return res.json()
             })
